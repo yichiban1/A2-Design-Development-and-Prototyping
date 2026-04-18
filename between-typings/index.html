@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Between Typings</title>
+    
+    <!-- Tone.js audio library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Opening introduction screen -->
+    <div class="intro" id="intro">
+        <div class="intro-title" id="introTitle">BETWEEN TYPINGS</div>
+        <div class="intro-hint">press any key to begin</div>
+    </div>
+
+    <!-- Top left corner title -->
+    <div class="ui-overlay header-left" id="headerLeft">
+        <div class="project-title">Between Typings</div>
+    </div>
+
+    <!-- Statistics panel in the upper right corner -->
+    <div class="ui-overlay header-right" id="headerRight">
+        <div class="stat-row">
+            <span>Rhythm</span>
+            <span class="stat-value" id="rhythmVal">-</span>
+            <div class="emotion-indicator" id="emotionDot"></div>
+        </div>
+        <div class="stat-row">
+            <span>Chars</span>
+            <span class="stat-value" id="charCount">0</span>
+        </div>
+        <div class="stat-row">
+            <span>Deleted</span>
+            <span class="stat-value" id="deleteCount">0</span>
+        </div>
+        <div class="stat-row">
+            <span>Paused</span>
+            <span class="stat-value" id="hesitationCount">0</span>
+        </div>
+    </div>
+
+    <!-- bottom right control button -->
+    <div class="ui-overlay controls" id="controls">
+        <button class="btn" id="clearBtn">Clear</button>
+        <button class="btn" id="saveBtn">Save</button>
+        <button class="btn" id="replayBtn">Replay</button>
+    </div>
+
+    <!-- bottom left mode indicator -->
+    <div class="ui-overlay mode-indicator" id="modeIndicator">Typing</div>
+
+    <!-- Legend in the lower left corner -->
+    <div class="legend" id="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#e07b54"></div>Rush / Impulse</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d4c97a"></div>Steady / Flow</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7ab89e"></div>Slow / Contemplate</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#6b8fb5"></div>Hesitate / Pause</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#888;border:1px dashed"></div>Ghost / Deleted</div>
+    </div>
+
+    <!-- Main canvas -->
+    <canvas class="canvas-container" id="canvas"></canvas>
+    
+    <!-- A hidden input layer (used to capture keyboard input). -->
+    <textarea class="input-layer" id="inputLayer" spellcheck="false"></textarea>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

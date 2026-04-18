@@ -1,0 +1,271 @@
+/**
+ * Between Typings - Stylesheet
+
+*
+* Overall Style For Now : Dark background + minimalist UI
+
+* Aiming to create an immersive "digital meditation" atmosphere
+
+*/
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", "SimHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background: #0a0a0f;  /* 深蓝黑色 */
+    min-height: 100vh;
+    overflow: hidden;  /* 防止滚动 */
+    color: #e0e0e0;
+}
+
+/* ========================================
+   Canvas and Input Layer
+   ======================================== */
+
+/* Main canvas - all animations are drawn here. */
+.canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Input layer - a transparent textarea used to capture keyboard input. */
+.input-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;  
+    cursor: text;
+}
+
+/* ========================================
+  Opening introduction screen
+   ======================================== */
+
+.intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+/* Hidden state */
+.intro.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.05);
+}
+
+/*title */
+.intro-title {
+    font-size: 28px;
+    letter-spacing: 20px;
+    color: #666;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.5s ease;
+}
+
+.intro-title.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Introduction text */
+.intro-line {
+    font-size: 18px;
+    color: #666;
+    letter-spacing: 8px;
+    margin: 12px 0;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.8s ease;
+    font-weight: 200;
+}
+
+.intro-line.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Bottom Tip */
+.intro-hint {
+    position: absolute;
+    bottom: 140px;
+    font-size: 15px;
+    color: #888;
+    letter-spacing: 4px;
+    animation: breathe 3s ease-in-out infinite;
+    text-transform: uppercase;
+}
+
+/* Breathing animation */
+@keyframes breathe {
+    0%, 100% { opacity: 0.35; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(-8px); }
+}
+
+/* ========================================
+   UI overlay
+   ======================================== */
+
+.ui-overlay {
+    position: fixed;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    pointer-events: none;  /* Clicks are not blocked by default. */
+}
+
+.ui-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Top left corner title*/
+.header-left {
+    top: 50px;
+    left: 50px;
+}
+
+.project-title {
+    font-size: 11px;
+    letter-spacing: 8px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* Statistics in the upper right corner */
+.header-right {
+    top: 50px;
+    right: 50px;
+    text-align: right;
+}
+
+.stat-row {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.stat-value {
+    color: #aaa;
+    font-weight: 500;
+    min-width: 60px;
+}
+
+/* 情绪指示小圆点 */
+.emotion-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+/* ========================================
+   Control Buttons
+   ======================================== */
+
+.controls {
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    gap: 14px;
+}
+
+.btn {
+    background: transparent;
+    border: 1px solid #444;
+    padding: 10px 24px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    font-family: inherit;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    border-color: #888;
+    color: #ccc;
+    background: rgba(255,255,255,0.03);
+    transform: translateY(-2px);
+}
+
+/* Pattern indicator (bottom left corner) */
+.mode-indicator {
+    bottom: 52px;
+    left: 50px;
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 4px;
+}
+
+/* ========================================
+   legend
+   ======================================== */
+
+.legend {
+    position: fixed;
+    bottom: 110px;
+    left: 50px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 2px;
+    line-height: 2;
+}
+
+.legend.show {
+    opacity: 1;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* Cursor (reserved) */
+.typing-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 50;
+}
+
+
